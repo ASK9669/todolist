@@ -27,9 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         checkbox.addEventListener('change', function () {
             if (checkbox.checked) {
+                span.style.color = 'blue';
+                span.style.backgroundColor = 'lightgreen';
                 span.style.textDecoration = 'line-through';
+               deleteBtn.style.backgroundColor = 'green';
             } else {
                 span.style.textDecoration = 'none';
+                deleteBtn.style.backgroundColor = 'red';
+                span.style.backgroundColor = 'transparent';
             }
         });
 
