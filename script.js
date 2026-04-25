@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const taskInput = document.getElementById('taskInput');
     const addBtn = document.getElementById('add-btn');
     const taskList = document.getElementById('taskList');
@@ -10,15 +10,31 @@ document.addEventListener('DOMContentLoaded', function() {
         if (taskText === '') return;
 
         const li = document.createElement('li');
-        li.textContent = taskText;
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'task-checkbox';
+
+        const span = document.createElement('span');
+        span.textContent = taskText;
 
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.className = 'delete-btn';
-        deleteBtn.onclick = function() {
+        deleteBtn.onclick = function () {
             taskList.removeChild(li);
         };
 
+        checkbox.addEventListener('change', function () {
+            if (checkbox.checked) {
+                span.style.textDecoration = 'line-through';
+            } else {
+                span.style.textDecoration = 'none';
+            }
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
         li.appendChild(deleteBtn);
         taskList.appendChild(li);
 
@@ -29,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addBtn.addEventListener('click', addTask);
 
     // Add task on Enter key press
-    taskInput.addEventListener('keypress', function(e) {
+    taskInput.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             addTask();
         }
